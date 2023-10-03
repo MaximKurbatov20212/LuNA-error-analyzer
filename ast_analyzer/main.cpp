@@ -52,15 +52,15 @@ int main(int argc, char** argv) {
     clock_gettime(CLOCK_MONOTONIC_RAW, &end_analyze);
 
 
-    std::cerr << "Всего токенов: "<< tokens << std::endl;
-    std::cerr << "Токенов в AST: " << ast_->get_tokens_count() << std::endl;
+    // std::cerr << "Всего токенов: "<< tokens << std::endl;
+    // std::cerr << "Токенов в AST: " << ast_->get_tokens_count() << std::endl;
 
     delete ast_;
     fclose(yyin);
 
     clock_gettime(CLOCK_MONOTONIC_RAW, &end_all);
-    printf("Program time: %lf sec.\n", end_all.tv_sec-start_all.tv_sec + 0.000000001*(end_all.tv_nsec-start_all.tv_nsec));
-    printf("Analyze time: %lf sec.\n", end_analyze.tv_sec-start_analyze.tv_sec + 0.000000001*(end_analyze.tv_nsec-start_analyze.tv_nsec));
-    printf("Parse time: %lf sec.\n", end_parse.tv_sec-start_parse.tv_sec + 0.000000001*(end_parse.tv_nsec-start_parse.tv_nsec));
+    // printf("Program time: %lf sec.\n", end_all.tv_sec-start_all.tv_sec + 0.000000001*(end_all.tv_nsec-start_all.tv_nsec));
+    // printf("Analyze time: %lf sec.\n", end_analyze.tv_sec-start_analyze.tv_sec + 0.000000001*(end_analyze.tv_nsec-start_analyze.tv_nsec));
+    // printf("Parse time: %lf sec.\n", end_parse.tv_sec-start_parse.tv_sec + 0.000000001*(end_parse.tv_nsec-start_parse.tv_nsec));
     return EXIT_SUCCESS;
 }

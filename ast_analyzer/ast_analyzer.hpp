@@ -13,17 +13,6 @@
 //     }
 // }
 
-// enum luna_type {
-//     INT,
-//     REAL,
-//     STRING,
-//     NAME,
-//     VALUE,
-//     UNDEFINED,
-//     ERROR_TYPE,
-
-// };
-
 static std::string print_type(luna_type type) {
     switch (type) {
         case LUNA_INT:  return "int"; 
@@ -45,90 +34,17 @@ public:
 
     bool analyze();
 
-    // // класс хранит название ФК на LuNA и его параметры
-    // class cf_info {
-    // public:
-
-    //     cf_info(luna_string* alias, std::vector<luna_type>* params) : alias_(alias), params_(params) {}
-    //     ~cf_info() {}
-
-    //     luna_string* alias_;
-    //     std::vector<luna_type>* params_;
-
-    //     std::string to_string() const {
-    //         std::string p;
-    //         for (auto i : *params_) {
-    //             std::string s;
-    //             switch (i) {
-    //                 case (INT): { p += "int, "; }
-    //                 case (REAL): { p += "real, "; }
-    //                 case (STRING): { p += "string,"; }
-    //                 case (UNDEFINED): { p += "undefined, "; }
-    //             }
-    //         }
-    //         if (p != "") p.pop_back();
-    //         return alias_->to_string() + "(" + p + ")";
-    //     }
-    // };
-
-
-    // класс хранит название ФК на LuNA и его параметры
-    // template <typename T>
-    // class cf_info {
-    // public:
-    //     cf_info(luna_string* alias, std::vector<T>* params) : alias_(alias), params_(params) {}
-    //     ~cf_info() {}
-
-    //     luna_string* alias_;
-    //     std::vector<T>* params_;
-
-    //     std::string to_string() const {
-    //         std::string p;
-    //         for (auto i : *params_) {
-    //             if (i == nullptr) {
-    //                 p += "nullptr ,";
-    //             }
-    //             else {
-    //                 p += i->to_string() + ",";
-    //             }
-    //         }
-    //         if (p != "") p.pop_back();
-    //         return alias_->to_string() + "(" + p + ")";
-    //     }
-    // };
-
-    // template <typename T = luna_type>
-    // class cf_info {
-    // public:
-    //     cf_info(luna_string* alias, std::vector<T>* params) : alias_(alias), params_(params) {}
-    //     ~cf_info() {}
-
-    //     luna_string* alias_;
-    //     std::vector<T>* params_;
-
-    //     std::string to_string() const {
-    //         std::string p;
-    //         for (auto i : *params_) {
-    //             switch (t) {
-    //                 case INT: return p += "int, ";
-    //                 case REAL: return p += "real, ";
-    //                 case STRING : return p += "string, ";
-    //                 case ERROR_TYPE: return p += "error_type, ";
-    //                 case UNDEFINED: return p += "undefined, ";
-    //             }
-    //         }
-    //         if (p != "") p.pop_back();
-    //         return alias_->to_string() + "(" + p + ")";
-    //     }
-    // };
-
-
-
 private:
     static const int FSEEK_ERROR = -1;
     FILE* file_;
     ast* ast_;
 
+    // bool is_define_in_scope(luna_string* var, std::vector<std::vector<luna_string*>*>* scope);
+    // std::vector<luna_string *> get_vars_from_expr(expr* expr);
+    // std::vector<luna_string*>* get_vars(std::vector<expr*>* exprs);
+    // check_unused(std::vector<std::vector<luna_string*>*>* vars, block* block_);
+    bool analyze_unused_variables();
+    bool check_unused(std::vector<std::vector<luna_string*>*>* scope, block* block_);
 
     bool analyze_shadow_import();
     bool have_such_code_id(std::map<std::string, std::string>& map, import* import);
